@@ -1,9 +1,11 @@
 Webizen
 -------
 
-Adds web servers to Denizen2!
+An addon for [https://github.com/DenizenScript/Denizen2Core](https://github.com/DenizenScript/Denizen2Core).
 
-An addon for see [https://github.com/DenizenScript/Denizen2Core](https://github.com/DenizenScript/Denizen2Core).
+This addon gives you the power to start a web-server from within your Denizen2 powered program!
+
+See Denizen2Core readme for useful links and additional information.
 
 ### Licensing pre-note:
 
