@@ -15,7 +15,7 @@ public class SocketCommand extends AbstractCommand {
     // @Updated 2016/08/26
     // @Authors Morphan1
     // @Group Webizen2
-    // @Procedural true
+    // @Addon Webizen2
     // @Minimum 2
     // @Maximum 2
     // @Description
@@ -48,7 +48,7 @@ public class SocketCommand extends AbstractCommand {
 
     @Override
     public boolean isProcedural() {
-        return true;
+        return false;
     }
 
     @Override
