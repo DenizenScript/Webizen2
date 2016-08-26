@@ -6,44 +6,45 @@ import org.mcmonkey.denizen2core.commands.CommandQueue;
 import org.mcmonkey.denizen2core.tags.objects.NumberTag;
 import org.mcmonkey.denizen2core.utilities.CoreUtilities;
 
-public class SocketCommand extends AbstractCommand {
+public class WebSocketCommand extends AbstractCommand {
 
     // <--[command]
-    // @Name socket
-    // @Arguments "open"/"close" <port> ["http"/"https"]
+    // @Name websocket
+    // @Arguments "open"/"close" <port> "http"/"https"
     // @Short Controls a web socket.
     // @Updated 2016/08/26
     // @Authors Morphan1
     // @Group Webizen2
     // @Addon Webizen2
-    // @Minimum 2
-    // @Maximum 2
+    // @Minimum 3
+    // @Maximum 3
     // @Description
     // Opens or closes a web socket on the specified port. The socket will begin listening for incoming
-    // connections and will fire off ScriptEvents. // TODO: more detail
+    // web requests and will fire off related ScriptEvents.
+    // TODO: Explain more!
     // @Example
-    // # Opens an http socket on port 25566
-    // - socket open 25566 http
+    // # This example opens an HTTP web socket on port 8080.
+    // - socket open 8080 http
     // -->
 
     @Override
     public String getName() {
-        return "socket";
+        return "websocket";
     }
 
     @Override
     public String getArguments() {
-        return "'open'/'close' <port>";
+        return "'open'/'close' <port> 'http'/'https'";
     }
 
     @Override
     public int getMinimumArguments() {
-        return 2;
+        return 3;
     }
 
     @Override
     public int getMaximumArguments() {
-        return 2;
+        return 3;
     }
 
     @Override
@@ -63,7 +64,7 @@ public class SocketCommand extends AbstractCommand {
             // TODO: implement
         }
         else {
-            queue.handleError(entry, "Invalid action in Socket command!");
+            queue.handleError(entry, "Invalid action in WebSocket command!");
         }
     }
 }

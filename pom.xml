@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
     <version>0.1.2-SNAPSHOT</version>
     <name>Webizen2</name>
-    <description>Webizen for Denizen2.</description>
+    <description>Web servers for Denizen2</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
