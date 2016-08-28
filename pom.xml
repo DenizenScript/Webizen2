@@ -6,7 +6,7 @@
     <groupId>com.morphanone</groupId>
     <artifactId>webizen2</artifactId>
     <packaging>jar</packaging>
-    <version>0.1.2-SNAPSHOT</version>
+    <version>0.1.2</version>
     <name>Webizen2</name>
     <description>Web servers for Denizen2</description>
 
@@ -27,7 +27,7 @@
         <dependency>
             <groupId>org.mcmonkey</groupId>
             <artifactId>denizen2core</artifactId>
-            <version>0.1.2-SNAPSHOT</version>
+            <version>0.1.2</version>
         </dependency>
     </dependencies>
 
@@ -42,5 +42,16 @@
                 </includes>
             </resource>
         </resources>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <compilerArgument></compilerArgument>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>
