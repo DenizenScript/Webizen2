@@ -21,7 +21,9 @@ public class Webizen2 extends DenizenAddon {
     @Override
     public void disable() {
         // Stop all active HTTP servers
-        HttpServerCommand.httpServerMap.values().forEach(WebizenHttpServer::stop);
+        for (WebizenHttpServer server : HttpServerCommand.httpServerMap.values()) {
+            server.stop();
+        }
         HttpServerCommand.httpServerMap.clear();
     }
 }

@@ -8,12 +8,15 @@ import java.io.OutputStream;
 
 public class HttpResponse {
 
+    public final WebizenHttpServer server;
+
     private final HttpExchange httpExchange;
-    private final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+    private ByteArrayOutputStream buffer = new ByteArrayOutputStream();
     private int statusCode = 404;
     private boolean sent = false;
 
-    public HttpResponse(HttpExchange httpExchange) {
+    public HttpResponse(WebizenHttpServer serv, HttpExchange httpExchange) {
+        this.server = serv;
         this.httpExchange = httpExchange;
     }
 
@@ -25,6 +28,10 @@ public class HttpResponse {
         this.statusCode = statusCode;
     }
 
+    public void clear() {
+        buffer = new ByteArrayOutputStream();
+    }
+
     public void write(byte[] bytes) throws IOException {
         buffer.write(bytes);
         buffer.flush();
@@ -32,6 +39,11 @@ public class HttpResponse {
 
     public boolean isSent() {
         return sent;
+    }
+
+    public void close() {
+        httpExchange.close();
+        sent = true;
     }
 
     public void send() throws IOException {
@@ -46,8 +58,7 @@ public class HttpResponse {
             }
         }
         finally {
-            httpExchange.close();
-            sent = true;
+            close();
         }
     }
 }

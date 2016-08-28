@@ -11,10 +11,19 @@ import java.net.InetSocketAddress;
 
 public class WebizenHttpServer {
 
+    /**
+     * Copied from private static field in java.net.HostPortrange.
+     * Value is 65535 (2^16 - 1).
+     */
+    public static final int PORT_MAX = (1 << 16) - 1;
+
     private final HttpServer server;
     private boolean running;
 
+    public final int port;
+
     public WebizenHttpServer(int port) throws IOException {
+        this.port = port;
         this.server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/", httpHandler);
         server.setExecutor(Runnable::run);
@@ -33,10 +42,11 @@ public class WebizenHttpServer {
         }
     }
 
-    private static final HttpHandler httpHandler = httpExchange -> {
+    private final HttpHandler httpHandler = (httpExchange) -> {
         HttpRequest request = new HttpRequest(httpExchange);
-        HttpResponse response = new HttpResponse(httpExchange);
+        HttpResponse response = new HttpResponse(this, httpExchange);
         String requestMethod = CoreUtilities.toUpperCase(request.getRequestMethod());
+        // TODO: If configured to (default: true), force onto primary thread to avoid async issues!
         switch (requestMethod) {
             case "GET":
                 HttpGetRequestScriptEvent.instance.run(request, response);
@@ -57,11 +67,13 @@ public class WebizenHttpServer {
             default:
                 // Respond with 501 "Not Implemented"
                 response.setStatusCode(501);
+                response.write("501 Not Implemented".getBytes("UTF-8"));
                 response.send();
                 break;
         }
         if (!response.isSent()) {
-            response.send();
+            // Something went wrong if this is ever reached.
+            response.close();
         }
     };
 }

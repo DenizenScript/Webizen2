@@ -25,14 +25,6 @@ public abstract class HttpRequestScriptEvent extends ScriptEvent {
     public IntegerTag statusCode;
     public TextTag responseText;
 
-    private final String requestMethod;
-    private final String lowerRequestMethod;
-
-    public HttpRequestScriptEvent() {
-        this.requestMethod = getRequestMethod();
-        this.lowerRequestMethod = CoreUtilities.toLowerCase(requestMethod);
-    }
-
     public void run(HttpRequest request, HttpResponse response) {
         HttpRequestScriptEvent event = (HttpRequestScriptEvent) clone();
         event.request = request;
@@ -50,36 +42,43 @@ public abstract class HttpRequestScriptEvent extends ScriptEvent {
             if (event.statusCode != null) {
                 response.setStatusCode((int) event.statusCode.getInternal());
             }
-            if (event.responseText != null) {
+            if (supportsResponseBody() && event.responseText != null) {
                 response.write(event.responseText.getInternal().getBytes("UTF-8"));
             }
+            response.send();
         }
         catch (IOException e) {
             Debug.exception(e);
-        }
-        finally {
             try {
+                response.setHeader("Content-Type", "text/plain");
+                response.setStatusCode(500);
+                response.clear();
+                if (supportsResponseBody()) {
+                    response.write("500 Internal Server Error".getBytes("UTF-8"));
+                }
                 response.send();
             }
-            catch (IOException e) {
-                Debug.exception(e);
+            catch (IOException e2) {
+                // Something is horrendously wrong! Give-up time!
+                Debug.exception(e2);
             }
         }
-    }
-
-    @Override
-    public String getName() {
-        return "Http" + requestMethod + "Request";
     }
 
     @Override
     public boolean couldMatch(ScriptEventData data) {
-        return data.eventPath.startsWith("http " + lowerRequestMethod + " request");
+        return data.eventPath.startsWith("http " + getRequestMethod() + " request");
     }
 
     @Override
     public boolean matches(ScriptEventData data) {
-        return !data.switches.containsKey("page") || data.switches.get("page").equals(request.getRequestURI().getPath());
+        if (data.switches.containsKey("port") && !data.switches.get("port").equals(String.valueOf(response.server.port))) {
+            return false;
+        }
+        if (data.switches.containsKey("page") && !data.switches.get("page").equals(CoreUtilities.toLowerCase(request.getRequestURI().getPath()))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -87,7 +86,7 @@ public abstract class HttpRequestScriptEvent extends ScriptEvent {
         HashMap<String, AbstractTagObject> defs = super.getDefinitions(data);
         defs.put("address", new TextTag(request.getRemoteAddress().toString()));
         URI uri = request.getRequestURI();
-        defs.put("request", new TextTag(uri.getPath()));
+        defs.put("page", new TextTag(uri.getPath()));
         defs.put("query", new TextTag(uri.getQuery()));
         defs.put("user_info", new TextTag(uri.getUserInfo()));
         return defs;

@@ -8,16 +8,19 @@ public class HttpGetRequestScriptEvent extends HttpRequestScriptEvent {
     //
     // @Updated 2016/08/28
     //
+    // @Addon Webizen2
+    //
     // @Cancellable false
     //
     // @Triggers when an HTTP web socket receives a GET request.
     //
-    // @Switch page the page being requested (optional).
+    // @Switch page checks if the page requested is the one specified.
+    // @Switch port checks if the port of the user is the one specified.
     //
     // @Context
     // address (TextTag) returns the IP address of the device that sent the request.
     // page (TextTag) returns the path of the page that was requested.
-    // query (TextTag) returns the query string included with the request.
+    // query (TextTag) returns the query text included with the request.
     // user_info (TextTag) returns info about the authenticated user sending the request, if any.
     //
     // @Determinations
@@ -25,11 +28,14 @@ public class HttpGetRequestScriptEvent extends HttpRequestScriptEvent {
     // status_code (IntegerTag) sets the status code of the response (e.g. 200).
     // response_text (TextTag) sets the text content of the response.
     // headers (MapTag) sets the headers of the response.
-    //
-    // @Addon Webizen2
     // -->
 
     public static HttpGetRequestScriptEvent instance = new HttpGetRequestScriptEvent();
+
+    @Override
+    public String getName() {
+        return "HttpHeadRequest";
+    }
 
     @Override
     public boolean supportsResponseBody() {
@@ -38,6 +44,6 @@ public class HttpGetRequestScriptEvent extends HttpRequestScriptEvent {
 
     @Override
     public String getRequestMethod() {
-        return "Get";
+        return "get";
     }
 }

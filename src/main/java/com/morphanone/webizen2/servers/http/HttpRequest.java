@@ -1,6 +1,7 @@
 package com.morphanone.webizen2.servers.http;
 
 import com.sun.net.httpserver.HttpExchange;
+import org.mcmonkey.denizen2core.utilities.CoreUtilities;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -17,10 +18,13 @@ public class HttpRequest {
         this.httpExchange = httpExchange;
         InputStream requestBody = httpExchange.getRequestBody();
         ByteArrayOutputStream output = new ByteArrayOutputStream();
-        byte[] buffer = new byte[4096];
-        int n;
-        while ((n = requestBody.read(buffer)) != -1) {
-            output.write(buffer, 0, n);
+        byte[] buffer = new byte[CoreUtilities.buff10k];
+        while (true) {
+            int rsz = requestBody.read(buffer, 0, buffer.length);
+            if (rsz < 0) {
+                break;
+            }
+            output.write(buffer, 0, rsz);
         }
         this.fullRequest = output.toByteArray();
         requestBody.close();
