@@ -25,6 +25,14 @@ public abstract class HttpRequestScriptEvent extends ScriptEvent {
     public IntegerTag statusCode;
     public TextTag responseText;
 
+    private final String requestMethod;
+    private final String lowerRequestMethod;
+
+    public HttpRequestScriptEvent() {
+        this.requestMethod = getRequestMethod();
+        this.lowerRequestMethod = CoreUtilities.toLowerCase(requestMethod);
+    }
+
     public void run(HttpRequest request, HttpResponse response) {
         HttpRequestScriptEvent event = (HttpRequestScriptEvent) clone();
         event.request = request;
@@ -61,12 +69,12 @@ public abstract class HttpRequestScriptEvent extends ScriptEvent {
 
     @Override
     public String getName() {
-        return "Http" + getRequestMethod() + "Request";
+        return "Http" + requestMethod + "Request";
     }
 
     @Override
     public boolean couldMatch(ScriptEventData data) {
-        return data.eventPath.startsWith("http " + CoreUtilities.toLowerCase(getRequestMethod()) + " request");
+        return data.eventPath.startsWith("http " + lowerRequestMethod + " request");
     }
 
     @Override
@@ -96,7 +104,7 @@ public abstract class HttpRequestScriptEvent extends ScriptEvent {
         else if (determination.equals("status_code")) {
             statusCode = IntegerTag.getFor(this::error, value);
         }
-        else if (determination.equals("response_text")) {
+        else if (determination.equals("response_text") && supportsResponseBody()) {
             responseText = new TextTag(value.toString());
         }
         else {

@@ -6,6 +6,7 @@ import org.mcmonkey.denizen2core.commands.CommandEntry;
 import org.mcmonkey.denizen2core.commands.CommandQueue;
 import org.mcmonkey.denizen2core.tags.objects.IntegerTag;
 import org.mcmonkey.denizen2core.utilities.CoreUtilities;
+import org.mcmonkey.denizen2core.utilities.debugging.Debug;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -28,7 +29,7 @@ public class HttpServerCommand extends AbstractCommand {
     // HTTP requests and will fire off related ScriptEvents.
     // TODO: Explain more!
     // @Example
-    // # This example opens an HTTP web socket on port 8080.
+    // # This example starts an HTTP server on port 8080.
     // - httpserver start 8080
     // -->
 
@@ -52,11 +53,6 @@ public class HttpServerCommand extends AbstractCommand {
         return 2;
     }
 
-    @Override
-    public boolean isProcedural() {
-        return false;
-    }
-
     public static final Map<Integer, WebizenHttpServer> httpServerMap = new HashMap<>();
 
     @Override
@@ -74,6 +70,7 @@ public class HttpServerCommand extends AbstractCommand {
                     httpServerMap.put(port, httpServer);
                 }
                 catch (IOException e) {
+                    Debug.exception(e);
                     queue.handleError(entry, "Failed to create new HTTP server due to an exception.");
                 }
             }
