@@ -43,7 +43,7 @@ public class HttpPostRequestScriptEvent extends HttpRequestScriptEvent {
 
     @Override
     public HashMap<String, AbstractTagObject> getDefinitions(ScriptEventData data) {
-        HashMap<String, AbstractTagObject> defs =  super.getDefinitions(data);
+        HashMap<String, AbstractTagObject> defs = super.getDefinitions(data);
         defs.put("content_type", new TextTag(request.getHeader("Content-Type")));
         return defs;
     }
