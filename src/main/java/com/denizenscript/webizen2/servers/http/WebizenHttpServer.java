@@ -1,8 +1,8 @@
-package com.morphanone.webizen2.servers.http;
+package com.denizenscript.webizen2.servers.http;
 
-import com.morphanone.webizen2.events.http.HttpGetRequestScriptEvent;
-import com.morphanone.webizen2.events.http.HttpHeadRequestScriptEvent;
-import com.morphanone.webizen2.events.http.HttpPostRequestScriptEvent;
+import com.denizenscript.webizen2.events.http.HttpGetRequestScriptEvent;
+import com.denizenscript.webizen2.events.http.HttpHeadRequestScriptEvent;
+import com.denizenscript.webizen2.events.http.HttpPostRequestScriptEvent;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import org.mcmonkey.denizen2core.utilities.CoreUtilities;

@@ -1,4 +1,4 @@
-package com.morphanone.webizen2.servers.http;
+package com.denizenscript.webizen2.servers.http;
 
 import com.sun.net.httpserver.HttpExchange;
 

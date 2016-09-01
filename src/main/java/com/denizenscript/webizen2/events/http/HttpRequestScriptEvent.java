@@ -1,7 +1,7 @@
-package com.morphanone.webizen2.events.http;
+package com.denizenscript.webizen2.events.http;
 
-import com.morphanone.webizen2.servers.http.HttpRequest;
-import com.morphanone.webizen2.servers.http.HttpResponse;
+import com.denizenscript.webizen2.servers.http.HttpResponse;
+import com.denizenscript.webizen2.servers.http.HttpRequest;
 import org.mcmonkey.denizen2core.events.ScriptEvent;
 import org.mcmonkey.denizen2core.tags.AbstractTagObject;
 import org.mcmonkey.denizen2core.tags.objects.IntegerTag;

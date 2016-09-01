@@ -1,4 +1,4 @@
-package com.morphanone.webizen2.events.http;
+package com.denizenscript.webizen2.events.http;
 
 public class HttpGetRequestScriptEvent extends HttpRequestScriptEvent {
 

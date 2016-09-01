@@ -1,6 +1,6 @@
-package com.morphanone.webizen2.commands;
+package com.denizenscript.webizen2.commands;
 
-import com.morphanone.webizen2.servers.http.WebizenHttpServer;
+import com.denizenscript.webizen2.servers.http.WebizenHttpServer;
 import org.mcmonkey.denizen2core.commands.AbstractCommand;
 import org.mcmonkey.denizen2core.commands.CommandEntry;
 import org.mcmonkey.denizen2core.commands.CommandQueue;
