@@ -13,6 +13,7 @@ import org.mcmonkey.denizen2core.utilities.debugging.Debug;
 import java.io.IOException;
 import java.net.URI;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public abstract class HttpRequestScriptEvent extends ScriptEvent {
@@ -72,7 +73,7 @@ public abstract class HttpRequestScriptEvent extends ScriptEvent {
 
     @Override
     public boolean matches(ScriptEventData data) {
-        if (data.switches.containsKey("port") && !data.switches.get("port").equals(String.valueOf(response.server.port))) {
+        if (data.switches.containsKey("port") && !data.switches.get("port").equals(String.valueOf(request.getRequestURI().getPort()))) {
             return false;
         }
         if (data.switches.containsKey("page") && !data.switches.get("page").equals(CoreUtilities.toLowerCase(request.getRequestURI().getPath()))) {
@@ -86,7 +87,18 @@ public abstract class HttpRequestScriptEvent extends ScriptEvent {
         HashMap<String, AbstractTagObject> defs = super.getDefinitions(data);
         defs.put("address", new TextTag(request.getRemoteAddress().toString()));
         URI uri = request.getRequestURI();
+        String hostHeader = request.getHeader("Host");
+        String host = null;
+        int port = -1;
+        if (hostHeader != null) {
+            List<String> hostSplit = CoreUtilities.split(hostHeader, ':');
+            host = hostSplit.get(0);
+            port = Integer.parseInt(hostSplit.get(1));
+        }
+        defs.put("host", new TextTag(host));
+        defs.put("port", new IntegerTag(port));
         defs.put("page", new TextTag(uri.getPath()));
+        defs.put("request", new TextTag(host + ":" + port + uri.toString()));
         defs.put("query", new TextTag(uri.getQuery()));
         defs.put("user_info", new TextTag(uri.getUserInfo()));
         return defs;

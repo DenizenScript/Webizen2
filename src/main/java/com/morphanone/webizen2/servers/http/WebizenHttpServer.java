@@ -2,6 +2,7 @@ package com.morphanone.webizen2.servers.http;
 
 import com.morphanone.webizen2.events.http.HttpGetRequestScriptEvent;
 import com.morphanone.webizen2.events.http.HttpHeadRequestScriptEvent;
+import com.morphanone.webizen2.events.http.HttpPostRequestScriptEvent;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import org.mcmonkey.denizen2core.utilities.CoreUtilities;
@@ -33,12 +34,14 @@ public class WebizenHttpServer {
     public void start() {
         if (!running) {
             server.start();
+            running = true;
         }
     }
 
     public void stop() {
         if (running) {
             server.stop(0);
+            running = false;
         }
     }
 
@@ -54,12 +57,11 @@ public class WebizenHttpServer {
             case "HEAD":
                 HttpHeadRequestScriptEvent.instance.run(request, response);
                 break;
-            // TODO: implement these
-            // case "POST":
-            //     break;
-            // case "OPTIONS":
-            //     break;
+            case "POST":
+                HttpPostRequestScriptEvent.instance.run(request, response);
+                break;
             // Other HTTP/1.1 request methods (which we probably won't need to implement)
+            // OPTIONS,
             // PUT,
             // DELETE,
             // TRACE,

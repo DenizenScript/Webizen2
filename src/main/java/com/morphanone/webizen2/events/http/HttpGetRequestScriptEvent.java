@@ -6,20 +6,23 @@ public class HttpGetRequestScriptEvent extends HttpRequestScriptEvent {
     // @Events
     // http get request
     //
-    // @Updated 2016/08/28
+    // @Updated 2016/08/31
     //
     // @Addon Webizen2
     //
     // @Cancellable false
     //
-    // @Triggers when an HTTP web socket receives a GET request.
+    // @Triggers when an HTTP server receives a GET request.
     //
     // @Switch page checks if the page requested is the one specified.
-    // @Switch port checks if the port of the user is the one specified.
+    // @Switch port checks if the port requested is the one specified.
     //
     // @Context
     // address (TextTag) returns the IP address of the device that sent the request.
-    // page (TextTag) returns the path of the page that was requested.
+    // host (TextTag) returns the host that was requested (EG: www.example.com).
+    // page (TextTag) returns the path of the page that was requested (EG: /page).
+    // port (IntegerTag) returns the port that was requested (EG: 8080).
+    // request (TextTag) returns the full requested URI (EG: www.example.com:8080/page).
     // query (TextTag) returns the query text included with the request.
     // user_info (TextTag) returns info about the authenticated user sending the request, if any.
     //
@@ -34,7 +37,7 @@ public class HttpGetRequestScriptEvent extends HttpRequestScriptEvent {
 
     @Override
     public String getName() {
-        return "HttpHeadRequest";
+        return "HttpGetRequest";
     }
 
     @Override
