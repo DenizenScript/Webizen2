@@ -5,8 +5,8 @@ import com.denizenscript.webizen2.events.http.HttpPostRequestScriptEvent;
 import com.denizenscript.webizen2.events.http.HttpGetRequestScriptEvent;
 import com.denizenscript.webizen2.events.http.HttpHeadRequestScriptEvent;
 import com.denizenscript.webizen2.servers.http.WebizenHttpServer;
-import org.mcmonkey.denizen2core.Denizen2Core;
-import org.mcmonkey.denizen2core.addons.DenizenAddon;
+import com.denizenscript.denizen2core.Denizen2Core;
+import com.denizenscript.denizen2core.addons.DenizenAddon;
 
 public class Webizen2 extends DenizenAddon {
 

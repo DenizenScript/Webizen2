@@ -1,7 +1,7 @@
 package com.denizenscript.webizen2.servers.http;
 
 import com.sun.net.httpserver.HttpExchange;
-import org.mcmonkey.denizen2core.utilities.CoreUtilities;
+import com.denizenscript.denizen2core.utilities.CoreUtilities;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

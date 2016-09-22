@@ -2,13 +2,13 @@ package com.denizenscript.webizen2.events.http;
 
 import com.denizenscript.webizen2.servers.http.HttpResponse;
 import com.denizenscript.webizen2.servers.http.HttpRequest;
-import org.mcmonkey.denizen2core.events.ScriptEvent;
-import org.mcmonkey.denizen2core.tags.AbstractTagObject;
-import org.mcmonkey.denizen2core.tags.objects.IntegerTag;
-import org.mcmonkey.denizen2core.tags.objects.MapTag;
-import org.mcmonkey.denizen2core.tags.objects.TextTag;
-import org.mcmonkey.denizen2core.utilities.CoreUtilities;
-import org.mcmonkey.denizen2core.utilities.debugging.Debug;
+import com.denizenscript.denizen2core.events.ScriptEvent;
+import com.denizenscript.denizen2core.tags.AbstractTagObject;
+import com.denizenscript.denizen2core.tags.objects.IntegerTag;
+import com.denizenscript.denizen2core.tags.objects.MapTag;
+import com.denizenscript.denizen2core.tags.objects.TextTag;
+import com.denizenscript.denizen2core.utilities.CoreUtilities;
+import com.denizenscript.denizen2core.utilities.debugging.Debug;
 
 import java.io.IOException;
 import java.net.URI;

@@ -1,7 +1,7 @@
 package com.denizenscript.webizen2.events.http;
 
-import org.mcmonkey.denizen2core.tags.AbstractTagObject;
-import org.mcmonkey.denizen2core.tags.objects.TextTag;
+import com.denizenscript.denizen2core.tags.AbstractTagObject;
+import com.denizenscript.denizen2core.tags.objects.TextTag;
 
 import java.util.HashMap;
 

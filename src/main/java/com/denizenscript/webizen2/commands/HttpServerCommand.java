@@ -1,12 +1,12 @@
 package com.denizenscript.webizen2.commands;
 
 import com.denizenscript.webizen2.servers.http.WebizenHttpServer;
-import org.mcmonkey.denizen2core.commands.AbstractCommand;
-import org.mcmonkey.denizen2core.commands.CommandEntry;
-import org.mcmonkey.denizen2core.commands.CommandQueue;
-import org.mcmonkey.denizen2core.tags.objects.IntegerTag;
-import org.mcmonkey.denizen2core.utilities.CoreUtilities;
-import org.mcmonkey.denizen2core.utilities.debugging.Debug;
+import com.denizenscript.denizen2core.commands.AbstractCommand;
+import com.denizenscript.denizen2core.commands.CommandEntry;
+import com.denizenscript.denizen2core.commands.CommandQueue;
+import com.denizenscript.denizen2core.tags.objects.IntegerTag;
+import com.denizenscript.denizen2core.utilities.CoreUtilities;
+import com.denizenscript.denizen2core.utilities.debugging.Debug;
 
 import java.io.IOException;
 import java.util.HashMap;

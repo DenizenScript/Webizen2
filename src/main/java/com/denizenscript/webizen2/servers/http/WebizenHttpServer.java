@@ -5,7 +5,7 @@ import com.denizenscript.webizen2.events.http.HttpHeadRequestScriptEvent;
 import com.denizenscript.webizen2.events.http.HttpPostRequestScriptEvent;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-import org.mcmonkey.denizen2core.utilities.CoreUtilities;
+import com.denizenscript.denizen2core.utilities.CoreUtilities;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
