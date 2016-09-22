@@ -1,5 +1,8 @@
 package com.denizenscript.webizen2.events.http;
 
+import com.denizenscript.denizen2core.Denizen2Core;
+import com.denizenscript.denizen2core.scripts.CommandScript;
+import com.denizenscript.webizen2.scripts.webtypes.WebPageScript;
 import com.denizenscript.webizen2.servers.http.HttpResponse;
 import com.denizenscript.webizen2.servers.http.HttpRequest;
 import com.denizenscript.denizen2core.events.ScriptEvent;
@@ -93,7 +96,9 @@ public abstract class HttpRequestScriptEvent extends ScriptEvent {
         if (hostHeader != null) {
             List<String> hostSplit = CoreUtilities.split(hostHeader, ':');
             host = hostSplit.get(0);
-            port = Integer.parseInt(hostSplit.get(1));
+            if (hostSplit.size() > 1) {
+                port = Integer.parseInt(hostSplit.get(1));
+            }
         }
         defs.put("host", new TextTag(host));
         defs.put("port", new IntegerTag(port));
