@@ -19,7 +19,6 @@ public class HttpServerCommand extends AbstractCommand {
     // @Arguments "start"/"stop" <port>
     // @Short starts or stops an HTTP server on the specified port.
     // @Updated 2016/08/28
-    // @Authors Morphan1, mcmonkey
     // @Group Webizen2
     // @Addon Webizen2
     // @Minimum 2
