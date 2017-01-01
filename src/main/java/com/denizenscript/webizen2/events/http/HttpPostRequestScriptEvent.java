@@ -13,6 +13,8 @@ public class HttpPostRequestScriptEvent extends HttpRequestScriptEvent {
     //
     // @Updated 2016/08/31
     //
+    // @Group Webizen2
+    //
     // @Addon Webizen2
     //
     // @Cancellable false
